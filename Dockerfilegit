@@ -1,8 +1,10 @@
 FROM gradle:7.6.1-jdk-alpine
-RUN  git clone \
+RUN  apk add git \
+     && git clone https://github.com/prvprdk/app.git \
+     && cd app \
      && gradle build
 EXPOSE 3000
-CMD ["java", "-jar", "build/libs/app-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app-0.0.1-SNAPSHOT.jar"]
 
 #тоже самое как в Dockerfilein, только копирование из Git
 # docker build -t {name image} -f {name dockerfile}  .
