@@ -1,0 +1,10 @@
+FROM gradle:7.6.1-jdk-alpine
+COPY . .
+RUN gradle build
+EXPOSE 3000
+CMD ["java", "-jar", "build/libs/app-0.0.1-SNAPSHOT.jar"]
+
+#копирование файлов из текущей директории и запуск сборки проекта внутри образа, далее запуск jar файла
+# docker build -t {name image} -f {name dockerfile}  .
+# название докерфайла в команде сборки можно не указывать, если файл в дир один (ключ -f тоже не нужен будет)
+#docker run --name {container name} -p 3000:8080 {image name}
